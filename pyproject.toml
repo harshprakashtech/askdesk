@@ -13,11 +13,16 @@ target-version = "py310"
 [tool.ruff.lint]
 # Enable Pyflakes (F), pycodestyle (E, W), and isort (I)
 select = ["E", "F", "W", "I"]
-ignore = []
+# Ignore line length violations (E501) since ruff format handles wrapping where possible.
+ignore = ["E501"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore wildcard import errors in Django settings
+"config/settings/*.py" = ["F403", "F405"]
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.

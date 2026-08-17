@@ -1,15 +1,19 @@
+import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv
 
-SECRET_KEY = "django-insecure-q2s2v3s8xw*us_5ep1s-m2w)tve=)$jda6r1_*-eku21n%@vkt"
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-DEBUG = True
+# Load environment variables
+load_dotenv(BASE_DIR / ".env")
 
-ALLOWED_HOSTS = []
+
+# Environment variables
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
-# Application definition
+# Application definitions
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -19,6 +23,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
+
+# Middlewares
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -29,7 +35,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 ROOT_URLCONF = "config.urls"
+
 
 TEMPLATES = [
     {
@@ -46,16 +54,8 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = "config.wsgi.application"
-
-
-# Database
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
