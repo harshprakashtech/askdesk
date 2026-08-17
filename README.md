@@ -1,21 +1,21 @@
-# AskDesk
+# AskDesk (Backend API)
 
 [![Django](https://img.shields.io/badge/Django-5.x-092E20?logo=django)](https://www.djangoproject.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql)](https://www.postgresql.org/)
 
-**AskDesk** is a multi-tenant FAQ and support chatbot platform. It allows users to create their own intelligent customer support bots grounded entirely in their own custom knowledge base, powered by **Retrieval-Augmented Generation (RAG)**.
+**AskDesk (Backend)** provides the core REST APIs for a multi-tenant FAQ and support chatbot platform. It allows users to create their own intelligent customer support bots grounded entirely in their own custom knowledge base, powered by **Retrieval-Augmented Generation (RAG)**.
 
-This repository serves as the core engine for AskDesk, demonstrating production-grade RAG architecture, vector search, and LLM integrations.
+This repository serves as the backend engine for AskDesk, exposing the REST APIs that power the separate frontend and admin applications. It demonstrates production-grade RAG architecture, vector search, and LLM integrations.
 
 ---
 
 ## Architecture Overview
 
-AskDesk operates on a standard production RAG pipeline:
+The backend operates on a standard production RAG pipeline exposed via REST endpoints:
 
-1. **Ingestion Flow:** 
+1. **Ingestion Flow:**
    Raw Text → Text Chunking → Embedding Model → PostgreSQL (`pgvector`)
-2. **Query Flow:** 
+2. **Query Flow:**
    User Question → Hybrid Search → Re-ranking → Context Merging → LLM API → Grounded Answer
 
 ---
